@@ -86,14 +86,60 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./server/app.js":
+/*!***********************!*\
+  !*** ./server/app.js ***!
+  \***********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var body_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! body-parser */ \"body-parser\");\n/* harmony import */ var body_parser__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(body_parser__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\nvar fileAssets = express__WEBPACK_IMPORTED_MODULE_0___default.a[\"static\"](\"/Users/romanersov/Projects/chat/dist/assets\");\n\nvar logger = function logger(req, res, next) {\n  console.log(\"\".concat(req.method, \" request for \").concat(req.url));\n  next();\n};\n\nvar buildHTMLPage = function buildHTMLPage() {\n  return \"\\n      <!DOCTYPE html>\\n      <html>\\n        <head>\\n            <meta charset=\\\"utf-8\\\"/>\\n            <title>Application chat</title>\\n            <style></style>\\n        </head>\\n        <body> Hi\\n            <div id=\\\"root\\\"></div>\\n            <script src=\\\"/bundle.js\\\"></script>\\n        </body>\\n      </html>\\n   \";\n};\n\nvar respond = function respond(_ref, res) {\n  var url = _ref.url;\n  res.status(200).send(buildHTMLPage());\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (express__WEBPACK_IMPORTED_MODULE_0___default()().use(body_parser__WEBPACK_IMPORTED_MODULE_1___default.a.json()).use(logger).use(fileAssets).use(respond));\n\n//# sourceURL=webpack:///./server/app.js?");
+
+/***/ }),
+
 /***/ "./server/index.js":
 /*!*************************!*\
   !*** ./server/index.js ***!
   \*************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.js */ \"./server/app.js\");\n\n_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].set('port', process.env.PORT || 8080);\n_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].listen(_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get('port'), function () {\n  return console.log(\"application running at 'http://localhost:\".concat(_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get('port'), \"'\"));\n});\n\n//# sourceURL=webpack:///./server/index.js?");
+
+/***/ }),
+
+/***/ "body-parser":
+/*!******************************!*\
+  !*** external "body-parser" ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("\n\n//# sourceURL=webpack:///./server/index.js?");
+eval("module.exports = require(\"body-parser\");\n\n//# sourceURL=webpack:///external_%22body-parser%22?");
+
+/***/ }),
+
+/***/ "express":
+/*!**************************!*\
+  !*** external "express" ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
+
+/***/ }),
+
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"fs\");\n\n//# sourceURL=webpack:///external_%22fs%22?");
 
 /***/ })
 
