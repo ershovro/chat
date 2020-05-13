@@ -17,7 +17,7 @@ const buildHTMLPage = () =>
             <title>Application chat</title>
             <style></style>
         </head>
-        <body> Hi
+        <body>
             <div id="root"></div>
             <script src="/bundle.js"></script>
         </body>
