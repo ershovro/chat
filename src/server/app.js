@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
-
+import api from './api';
 
 const fileAssets = express.static( DIR_STATIC_FILES );
 const logger = (req, res, next) => {
@@ -28,7 +28,8 @@ const respond = ({url}, res) => {
 };
 
 export default express()
-   .use( bodyParser.json() )
+   //.use( bodyParser.json() )
    .use(logger)
    .use(fileAssets)
+   .use('/api', api)
    .use(respond)

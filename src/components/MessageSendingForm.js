@@ -1,12 +1,12 @@
 import React from 'react';
 
 
-const MessageSendingForm = ({}) => {
+const MessageSendingForm = ({onSubmit = f => f}) => {
    const _textInputRef = React.createRef();
 
    const _onSubmitHandler = (event) => {
       event.preventDefault();
-      alert(_textInputRef.current.value);
+      onSubmit(_textInputRef.current.value);
       _textInputRef.current.value = '';
       _textInputRef.current.focus();
    };

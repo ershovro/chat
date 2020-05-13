@@ -4,7 +4,7 @@ const MessageList = ({list = []}) => {
    return (
       <ul>
          {
-            list.map((message) => <li key={message.id}>{message.text}</li>)
+            list.map((message, index) => <li key={index}>{message}</li>)
          }
       </ul>
    );
