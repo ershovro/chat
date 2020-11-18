@@ -1,6 +1,7 @@
 import app from './app.js';
+import config from '../../config';
 
-app.set('port', process.env.PORT || 8080);
+app.set('port', config.get('port'));
 
 app.listen(
    app.get('port'),

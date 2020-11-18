@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "../config/index.js":
+/*!**************************!*\
+  !*** ../config/index.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var nconf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nconf */ \"nconf\");\n/* harmony import */ var nconf__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nconf__WEBPACK_IMPORTED_MODULE_0__);\n\nnconf__WEBPACK_IMPORTED_MODULE_0___default.a.file({\n  file: \"/Users/romanersov/Projects/chat/config/config.json\"\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (nconf__WEBPACK_IMPORTED_MODULE_0___default.a);\n\n//# sourceURL=webpack:///../config/index.js?");
+
+/***/ }),
+
 /***/ "./server/api.js":
 /*!***********************!*\
   !*** ./server/api.js ***!
@@ -94,7 +106,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n\nvar subscribers = Object.create(null);\nvar router = Object(express__WEBPACK_IMPORTED_MODULE_0__[\"Router\"])();\nrouter.post('/publish', function (req, res) {\n  console.log('api - publish');\n  var message = '';\n  req.on('data', function (chunk) {\n    message += chunk;\n  }).on('error', function (err) {\n    console.error(err);\n  }).on('end', function () {\n    for (var key in subscribers) {\n      var _res = subscribers[key];\n\n      _res.end(message);\n    }\n\n    subscribers = Object.create(null);\n  });\n});\nrouter.get('/subscribe/:random', function (req, res) {\n  console.log('api - subscribe');\n  var id = Math.random();\n  res.setHeader('Content-Type', 'text/plain;charset=utf-8');\n  res.setHeader(\"Cache-Control\", \"no-cache, must-revalidate\");\n  subscribers[id] = res;\n  req.on('close', function () {\n    delete subscribers[id];\n  });\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (router);\n\n//# sourceURL=webpack:///./server/api.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n\nvar subscribers = Object.create(null);\nvar router = Object(express__WEBPACK_IMPORTED_MODULE_0__[\"Router\"])();\nrouter.post('/publish', function (req, res) {\n  console.log('api - publish');\n  req.setEncoding('utf8');\n  var message = '';\n  req.on('data', function (chunk) {\n    message += chunk;\n  }).on('error', function (err) {\n    console.error(err);\n  }).on('end', function () {\n    for (var key in subscribers) {\n      subscribers[key].end(message);\n    }\n\n    subscribers = Object.create(null);\n    res.end(\"ok\");\n  });\n});\nrouter.get('/subscribe/:random', function (req, res) {\n  console.log('api - subscribe');\n  var id = Math.random();\n  res.setHeader('Content-Type', 'text/plain;charset=utf-8');\n  res.setHeader(\"Cache-Control\", \"no-cache, must-revalidate\");\n  subscribers[id] = res;\n  req.on('close', function () {\n    console.log('close ' + id);\n    delete subscribers[id];\n  });\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (router);\n\n//# sourceURL=webpack:///./server/api.js?");
 
 /***/ }),
 
@@ -118,7 +130,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var expr
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.js */ \"./server/app.js\");\n\n_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].set('port', process.env.PORT || 8080);\n_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].listen(_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get('port'), function () {\n  return console.log(\"application running at 'http://localhost:\".concat(_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get('port'), \"'\"));\n});\n\n//# sourceURL=webpack:///./server/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.js */ \"./server/app.js\");\n/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../config */ \"../config/index.js\");\n\n\n_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].set('port', _config__WEBPACK_IMPORTED_MODULE_1__[\"default\"].get('port'));\n_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].listen(_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get('port'), function () {\n  return console.log(\"application running at 'http://localhost:\".concat(_app_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get('port'), \"'\"));\n});\n\n//# sourceURL=webpack:///./server/index.js?");
 
 /***/ }),
 
@@ -152,6 +164,17 @@ eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///externa
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"fs\");\n\n//# sourceURL=webpack:///external_%22fs%22?");
+
+/***/ }),
+
+/***/ "nconf":
+/*!************************!*\
+  !*** external "nconf" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"nconf\");\n\n//# sourceURL=webpack:///external_%22nconf%22?");
 
 /***/ })
 

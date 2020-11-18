@@ -5,6 +5,7 @@ const router = Router();
 
 router.post('/publish', (req, res) => {
    console.log('api - publish');
+   req.setEncoding('utf8');
    let message = '';
 
    req.
@@ -16,12 +17,13 @@ router.post('/publish', (req, res) => {
    }).
    on('end', () => {
       for(let key in subscribers) {
-        let res = subscribers[key];
-        res.end(message);
+         subscribers[key].end(message);
       }
 
       subscribers = Object.create(null);
-   })
+
+      res.end("ok");
+   });
 
 
 });
@@ -36,8 +38,9 @@ router.get('/subscribe/:random', (req, res) => {
    subscribers[id] = res;
 
    req.on('close', () => {
+      console.log('close ' + id);
       delete subscribers[id];
-   })
+   });
 });
 
 export default router;

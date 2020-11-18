@@ -12,7 +12,7 @@ class App extends React.Component {
       };
 
       this.publishMessage = this.publishMessage.bind(this);
-      this.subscribe = this.subscribe.bind(this);
+      //this.subscribe = this.subscribe.bind(this);
    }
 
    publishMessage(text) {
@@ -23,31 +23,30 @@ class App extends React.Component {
    }
 
    subscribe() {
-
-      fetch(`/api/subscribe/${ Math.random() }`).
-         then( res => {
-            if (res.status === 502) {
-               this.subscribe();
-            } else if (res.status !== 200) {
-               this.setState({
-                  error: res.statusText
-               });
-               setTimeout( () => {this.subscribe();}, 1000);
-            } else {
-               return res.text();
-            }
-         }).
-         then( message => {
-            this.setState({
-               list: [...this.state.list, message],
-               error: ''
-            });
-            this.subscribe();
-         }).
-         catch( err => {
-            console.log(err);
-            this.subscribe();
-         });
+       fetch(`/api/subscribe/${ Math.random() }`).
+          then( res => {
+             if (res.status === 502) {
+                this.subscribe();
+             } else if (res.status !== 200) {
+                this.setState({
+                   error: res.statusText
+                });
+                setTimeout( () => {this.subscribe();}, 1000);
+             } else {
+                return res.text();
+             }
+          }).
+          then( message => {
+             this.setState({
+                list: [...this.state.list, message],
+                error: ''
+             });
+             this.subscribe();
+          }).
+          catch( err => {
+             console.log(err);
+             this.subscribe();
+          });
    }
 
    componentDidMount() {

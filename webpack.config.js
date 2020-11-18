@@ -47,7 +47,8 @@ const serverConfig = {
    },
    plugins: [
       new webpack.DefinePlugin({
-         DIR_STATIC_FILES: JSON.stringify( path.join(__dirname, '/dist/assets') )
+         DIR_STATIC_FILES: JSON.stringify( path.join(__dirname, '/dist/assets') ),
+         DIR_CONFIG: JSON.stringify( path.join(__dirname, '/config/config.json') )
       })
    ],
    externals: nodeModules
@@ -74,7 +75,10 @@ const clientConfig = {
             use: {
                loader: "babel-loader",
                options: {
-                  presets: ['@babel/preset-env', "@babel/preset-react"]//"@babel/preset-stage-0"
+                  presets: ['@babel/preset-env', "@babel/preset-react"],//"@babel/preset-stage-0"
+
+                  "plugins": ["@babel/plugin-transform-async-to-generator"]
+
                }
             }
          }, {
