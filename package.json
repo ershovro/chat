@@ -48,7 +48,7 @@
     "express": "^4.17.1",
     "ignore-styles": "^5.0.1",
     "isomorphic-fetch": "^2.2.1",
-    "nconf": "^0.10.0",
+    "nconf": "^0.11.4",
     "nodemon": "^2.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
